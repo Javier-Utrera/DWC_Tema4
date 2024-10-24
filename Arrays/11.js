@@ -13,15 +13,15 @@
 //hasta que el usuario introduzca la cadena vacía. El programa debe guardar los datos 
 //en un array bidimensional.
 var entrada;
-var contenedor=[];
-do{
-    entrada=prompt("Introduzca su Nombre,Apellidos,DNI,Fecha de nacimiento").split(",");
-    if(entrada!=""){
+var contenedor = [];
+do {
+    entrada = prompt("Introduzca su Nombre,Apellidos,DNI,Fecha de nacimiento").split(",");
+    if (entrada != "") {
         console.log(entrada);
-        entrada[3]=new Date(entrada[3]);
+        entrada[3] = new Date(entrada[3]);
         contenedor.push(entrada);
-    }    
-}while(entrada!="")
+    }
+} while (entrada != "")
 
 console.log(contenedor);
 
@@ -43,7 +43,7 @@ function edad(persona) {
     return fecha.getFullYear() - persona[3].getFullYear();
 }
 var imprimir = (persona) => console.log("Nombre: " + persona[0] + "\nApellidos: " + persona[1] + "\nDNI: " + persona[2] + "\nFecha nacimiento: " + persona[3]);
-var imprimirventana= (persona,ventana) => ventana.document.writeln("Nombre: " + persona[0] + "\nApellidos: " + persona[1] + "\nDNI: " + persona[2] + "\nFecha nacimiento: " + persona[3]);
+var imprimirventana = (persona, ventana) => ventana.document.writeln("Nombre: " + persona[0] + "\nApellidos: " + persona[1] + "\nDNI: " + persona[2] + "\nFecha nacimiento: " + persona[3]);
 var opcion = parseInt(prompt("Vamos a realizar una busqueda, ingrese la opcion que quiera usar \n 1.Apellidos \n 2.DNI \n 3.Edad \n 4.Imprimir todos los datos"));
 
 
@@ -74,8 +74,8 @@ switch (opcion) {
     case 5:
         alert("Le voy a enseñar los usuarios mayores de edad");
         filtrado = contenedor.filter(persona => edad(persona) >= 18);
-        nuevaVentana = window.open("","_blank","height=400,width=800");
-        filtrado.forEach(persona=>imprimirventana(persona,nuevaVentana));
+        nuevaVentana = window.open("", "_blank", "height=400,width=800");
+        filtrado.forEach(persona => imprimirventana(persona, nuevaVentana));
         break;
     case 6:
         alert("Le voy a enseñar los usuarios menores de edad y los dias que faltan para que lo sean");
@@ -85,23 +85,23 @@ switch (opcion) {
             imprimir(persona);
             console.log("Le faltan " + dias + " dias para cumplir años");
         }
-        nuevaVentana = window.open("","_blank","height=400,width=800");
-        filtrado.forEach(persona=>imprimirventana(persona,nuevaVentana));
+        nuevaVentana = window.open("", "_blank", "height=400,width=800");
+        filtrado.forEach(persona => imprimirventana(persona, nuevaVentana));
         break;
     case 7:
         opcion = parseInt(prompt("Que datos desea modificar: \n 1.Apellidos \n 2.DNI \n 3.Edad"));
-        aux= prompt("Escriba cual va ser el nuevo valor");
-        var dnibuscar=prompt("Indique el DNI del usuario que desea cambiar");
-        let posicion= contenedor.findIndex(persona=>persona[2]==dnibuscar); 
-        let amodificado=contenedor[posicion]; 
-        amodificado.splice(opcion,1,aux);  
-        contenedor.splice(posicion,1,amodificado);    
+        aux = prompt("Escriba cual va ser el nuevo valor");
+        var dnibuscar = prompt("Indique el DNI del usuario que desea cambiar");
+        let posicion = contenedor.findIndex(persona => persona[2] == dnibuscar);
+        let amodificado = contenedor[posicion];
+        amodificado.splice(opcion, 1, aux);
+        contenedor.splice(posicion, 1, amodificado);
         contenedor.forEach(imprimir);
         break;
     case 8:
-        contenedor.splice(contenedor.findIndex(persona=>persona[2]==prompt("Indique el DNI del usuario que desea cambiar")),1);
+        contenedor.splice(contenedor.findIndex(persona => persona[2] == prompt("Indique el DNI del usuario que desea cambiar")), 1);
         contenedor.forEach(imprimir);
-        break;         
+        break;
     default:
         break;
 }
